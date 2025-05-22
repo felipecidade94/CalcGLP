@@ -308,7 +308,7 @@ class CentralGLP(): # Cálculo de centrais prediais de GLP
          if not nome_arquivo:
             messagebox.showerror('ERRO!', 'Nome do arquivo não pode ser vazio!')
             return
-         nome_arquivo = f'./testes/{nome_arquivo}_{data}.xlsx'
+         nome_arquivo = f'./memoriais/{nome_arquivo}_{data}.xlsx'
          # Criar o arquivo Excel com múltiplas abas
          with pd.ExcelWriter(nome_arquivo, engine='openpyxl') as writer:
             df_equipamentos.to_excel(writer, sheet_name='Equipamentos', index=False)
