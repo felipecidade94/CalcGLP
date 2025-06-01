@@ -6,7 +6,7 @@ import pandas as pd
 from datetime import datetime
 import os
 
-class CentralGLP(): # Cálculo de centrais prediais de GLP
+class CalcGLP(): # Cálculo de centrais prediais de GLP
    def __init__(self):
       # Potencia computada é o somatório das potencias unitarias de cada equipento multiplicada pela quantidade de cada um
       # Ou seja, a potência computada é o nome que damos para a potência total
@@ -322,4 +322,4 @@ class CentralGLP(): # Cálculo de centrais prediais de GLP
          self.janela_principal.destroy()
 
 if __name__ == '__main__':
-   CentralGLP()
+   CalcGLP()
