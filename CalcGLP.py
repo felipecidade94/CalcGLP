@@ -39,32 +39,28 @@ class CalcGLP(): # Cálculo de centrais prediais de GLP
 
    # Calcula a potência computada, ou seja, a potência total de todos os equipamentos instalados na edificação
    def pot_computada(self):
-      pot_total = 0
-      for equipamento in self._pot_equipamentos:
-         pot_total += self._pot_equipamentos[equipamento][0] * self._pot_equipamentos[equipamento][1]
-      return pot_total
+      return sum(self._pot_equipamentos[equipamento][0] *
+      self._pot_equipamentos[equipamento][1]
+      for equipamento in self._pot_equipamentos)
 
    # Calcula o fator de simultaneidade
    def fator_simultaneidade(self):
       if self.pot_computada() <= 350:
-         f = 1
+         return 1
       elif 350 < self.pot_computada() < 9612:
-         f = 100/(1 + (0.001*((self.pot_computada() - 349))**(0.8712)))
+         return 100/(1 + (0.001*((self.pot_computada() - 349))**(0.8712)))
       elif 9612 <= self.pot_computada() < 20000:
-         f = 100/(1 + (0.4705*(self.pot_computada() - 1055)**(0.19931)))
+         return 100/(1 + (0.4705*(self.pot_computada() - 1055)**(0.19931)))
       else:
-         f = 23
-      return f
+         return 23
 
    # Calcula a potência adotada
    def calcular_pot_adotada(self):
-      pot_adotada = self.pot_computada() * 60 * self.fator_simultaneidade()/100
-      return pot_adotada
+      return self.pot_computada() * 60 * self.fator_simultaneidade()/100
 
    # Calcula a vazão
    def calcular_vazao(self):
-      vazao = self.calcular_pot_adotada() / self.__poder_calorifico
-      return vazao
+      return self.calcular_pot_adotada() / self.__poder_calorifico
 
    # Calcula a quantidade de cilindros necessários
    def num_cilindros(self, tipo_cilindro):
