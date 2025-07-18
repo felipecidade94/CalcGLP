@@ -150,7 +150,7 @@ class CalcGLP(): # Cálculo de centrais prediais de GLP
       self.widgets_calcular(self.nova_janela)
       
    def widgets_calcular(self, janela):
-      lista_tipos = [tipo for tipo in self.__cilindros_tv.keys()]
+      lista_tipos = list(self.__cilindros_tv.keys())
       style = ttk.Style()
       style.configure(style='TButton',  padding=1, font=("Arial", 15), foreground="black", background='#add8e6')
       style.configure(style='TLabel',  padding=10, font=('Arial', 20, 'bold'))
